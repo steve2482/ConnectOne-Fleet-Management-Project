@@ -1,0 +1,9 @@
+.panel {
+  border-color: #3B69AC;
+}
+
+.panel-connect>.panel-heading {
+  color: white;
+  background-color: #3B69AC;
+  border-color: #3B69AC;
+}

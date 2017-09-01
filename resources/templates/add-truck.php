@@ -120,7 +120,7 @@
       </div>
       <?php 
         echo $addForm->displayForm();
-        if (isset($_POST['truck id'])) {
+        if (isset($_POST['submit'])) {
           $addForm->handleSubmission();
           foreach ($addForm->errors as $error) {
             $errorHTML = '<p class="alert alert-danger">' . $error . '</p>';

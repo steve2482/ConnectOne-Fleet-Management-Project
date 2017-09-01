@@ -32,7 +32,7 @@
           <div class="list-group">
             <?php 
               for ($i = 0; $i < $half; $i++) {
-                echo '<a href="#" class="list-group-item"><strong>Truck ' . $trucks[$i]['Truck Id'] . '</stong></a>';
+                echo '<a href="../resources/templates/truck.php?id=' . $trucks[$i]['Id'] . '" class="list-group-item"><strong>Truck ' . $trucks[$i]['Id'] . '</stong></a>';
               }
             ?>
           </div>
@@ -41,7 +41,7 @@
           <div class="list-group">
             <?php 
               for ($i = $half; $i < count($trucks); $i++) {
-                echo '<a href="#" class="list-group-item"><strong>Truck ' . $trucks[$i]['Truck Id'] . '</strong></a>';
+                echo '<a href="../resources/templates/truck.php?id=' . $trucks[$i]['Id'] . '" class="list-group-item"><strong>Truck ' . $trucks[$i]['Id'] . '</strong></a>';
               }
             ?>
           </div>
