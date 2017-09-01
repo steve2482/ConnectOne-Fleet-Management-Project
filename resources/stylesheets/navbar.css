@@ -1,0 +1,21 @@
+.navbar {
+  background-color: #EFEFEF;
+}
+
+.nav-img {
+  margin-right: 20px;
+}
+
+/*Overwrite bootstrap*/
+.rounded {
+  border-radius: 4px !important;
+}
+
+button {
+  background-color: white;
+}
+
+.btn-connect {
+  color: white;
+  background-color: #3B69AC;
+}

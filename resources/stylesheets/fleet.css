@@ -1,0 +1,11 @@
+/*Use of important to overwrite bootstrap styles*/
+.list-group-item {
+  color: white !important;
+  background-color: #3E68B0 !important;
+  border-radius: 4px;
+}
+
+.list-group-item:hover {
+  background-color: #EFEFEF !important;
+  color: #3E68B0 !important;
+}
