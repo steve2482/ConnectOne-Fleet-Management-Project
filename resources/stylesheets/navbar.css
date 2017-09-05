@@ -1,5 +1,17 @@
 .navbar {
   background-color: #EFEFEF;
+  margin-bottom: 0;
+  border-radius: 0;
+}
+
+.navbar a {
+  color: #3B69AC;
+}
+
+// Overwrite bootstrap
+.navbar a:hover {
+  background-color: #3B69AC !important; 
+  color: white;
 }
 
 .nav-img {
@@ -11,11 +23,12 @@
   border-radius: 4px !important;
 }
 
-button {
-  background-color: white;
+#search {
+  border-color: #3B69AC;
 }
 
 .btn-connect {
   color: white;
   background-color: #3B69AC;
+  border-color: #3B69AC;
 }

@@ -5,7 +5,24 @@
   border-radius: 4px;
 }
 
+.list-item {
+  margin-bottom: 5px;
+  height: 60px;
+  font-size: 25px;
+}
+
 .list-group-item:hover {
   background-color: #EFEFEF !important;
   color: #3E68B0 !important;
+}
+
+.delete {
+  color: red;
+  float: right;
+  cursor: pointer;
+  position: static;
+}
+
+.delete:hover {
+  transform: scale(1.7);
 }

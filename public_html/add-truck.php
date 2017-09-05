@@ -1,26 +1,30 @@
 <?php
 
-  require_once(realpath(dirname(__FILE__) . "/../database-config.php"));
+
+
+  require_once(realpath(dirname(__FILE__) . "/../resources/database-config.php"));
 
   class Form {
     private $method;
     private $action;
+    public $successMessage;
     public $errors;
 
     // Constructor function
     public function __construct($method, $action) {
     $this->method = $method;
     $this->action = htmlspecialchars($action);
+    $this->successMessage = [];
     $this->errors = [];
     }
 
     // Method to display add form
     public function displayForm() {
       return '<div class="container">
-                <form id="add-form" method="' . $this->method . '" action="' . $this->action . '">
+                <form id="add-form" enctype="multipart/form-data" method="' . $this->method . '" action="' . $this->action . '">
                   <div class="form-group">
                     <label>Truck Id</label>
-                    <input type="number" name="truck id" class="form-control rounded">
+                    <input type="number" name="truck-id" class="form-control rounded">
                   </div>
                   <div class="form-group">
                     <label>Driver</label>
@@ -66,21 +70,35 @@
       // if post request received
       if ($_SERVER['REQUEST_METHOD'] == "POST") {
         // check that the form was not submitted with empty truck id
-        if (empty($_POST['truck id'])) {
+        if (empty($_POST['truck-id'])) {
           array_push($this->errors, 'Truck Id field is required!');
+          $this->successMessage = [];
         }
-        // else validate inputs are safe
         else {
-          $truckId = $this->validateInputs($_POST['truck id']);
+          // validate inputs are safe and grab inputs
+          $truckId = $this->validateInputs($_POST['truck-id']);
           $driver = $this->validateInputs($_POST['driver']);
           $warehouse = $this->validateInputs($_POST['warehouse']);
           $gps = $this->validateInputs($_POST['gps']);
           $easyPass = $this->validateInputs($_POST['easyPass']);
           $oilChange = $_POST['oilChange'];
           $inspection = $_POST['inspection'];
-          $query = "INSERT INTO fleet (Truck Id, Driver, Warehouse, GPS Tracking Number, Easy Pass Number, Last Oil Change, Last Inspection) VALUES ('$truckId', '$driver', '$warehouse', '$gps', '$easyPass', '$oilChange', '$inspection')";
+
+          // save files to server
+          $targetPath = '../resources/uploads/';
+          $insurancePath = $targetPath . 'truck' . $truckId . '-insurance';
+          $registrationPath = $targetPath . 'truck' . $truckId . '-registration';
+
+          if ($_FILES['insurance']['type'] == 'application/pdf') {
+            move_uploaded_file($_FILES['insurance']['tmp_name'], $insurancePath);
+            move_uploaded_file($_FILES['registration']['tmp_name'], $registrationPath);            
+          }
+
+          // save info to DB
+          $query = "INSERT INTO fleet (Id, Driver, Warehouse, Insurance, Registration, GPS, EasyPass, OilChange, Inspection) VALUES ('$truckId', '$driver', '$warehouse', '$insurancePath', '$registrationPath', '$gps', '$easyPass', '$oilChange', '$inspection')";
           if (mysqli_query($conn, $query)) {
-            header('Location: ../../public_html/index.php');
+            array_push($this->successMessage, 'Truck ' . $truckId . 'added successfully!');
+            $this->errors = [];
           } else {
             echo 'ERROR: ' . mysqli_error($conn);
           }
@@ -98,38 +116,30 @@
   }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Add Truck</title>
-  <link rel="stylesheet" href="https://bootswatch.com/cosmo/bootstrap.min.css">
-  <link rel="stylesheet" href="../stylesheets/navbar.css">
-</head>
-<body>
+<?php include('../resources/templates/header.php'); ?>
 
-  <?php include('./navbar.php'); ?>
+<?php include('./navbar.php'); ?>
+
+<div class="container">
+  <h1 class='header'>Add Truck</h1>
+</div>  
   
-  <div class="container">
-    <h1>Add Truck Here</h1>
-    
-    <?php
-      $addForm = new Form('post', $_SERVER["PHP_SELF"]);
-    ?>
-    <div class="container">
-      </div>
-      <?php 
-        echo $addForm->displayForm();
-        if (isset($_POST['submit'])) {
-          $addForm->handleSubmission();
-          foreach ($addForm->errors as $error) {
-            $errorHTML = '<p class="alert alert-danger">' . $error . '</p>';
-            echo $errorHTML;
-          }
-        }
-      ?>
-    </div>    
-  </div>
   
-</body>
-</html>
+
+  <?php
+    $addForm = new Form('post', $_SERVER["PHP_SELF"]);
+    echo $addForm->displayForm();
+    if (isset($_POST['submit'])) {
+      $addForm->handleSubmission();
+      foreach ($addForm->errors as $error) {
+        $errorHTML = '<div class="container"><p class="alert alert-danger">' . $error . '</p></div>';
+        echo $errorHTML;
+      }
+      foreach ($addForm->successMessage as $message) {
+      $successHTML = '<div class="container"><p class="alert alert-success">' . $message . '</p></div>';
+      echo $successHTML;
+      } 
+    }
+  ?>
+
+<?php include('../resources/templates/footer.php'); ?>

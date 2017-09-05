@@ -6,4 +6,27 @@
   color: white;
   background-color: #3B69AC;
   border-color: #3B69AC;
+  height: 60px;
+}
+
+.panel-title {
+  font-size: 25px;
+}
+
+.info {
+  background-color: white !important;
+  color: black !important;
+}
+
+.info a {
+  text-decoration: none;
+  color: black;
+}
+
+.info a:hover {
+  text-decoration: underline;
+}
+
+.warning {
+  color: red;
 }

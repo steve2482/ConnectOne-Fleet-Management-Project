@@ -13,13 +13,13 @@
 
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li><a href="../../public_html/index.php"><strong>Home</strong><span class="sr-only">(current)</span></a></li>
-          <li><a href="../resources/templates/add-truck.php"><strong>Add</strong></a></li>
+          <li><a href="./index.php"><strong>Home</strong><span class="sr-only">(current)</span></a></li>
+          <li><a href="./add-truck.php"><strong>Add</strong></a></li>
           <li><a href="#"><strong>Inspection</strong></a></li>
         </ul>
         <form class="navbar-form navbar-right" role="search">
           <div class="form-group">
-            <input type="text" class="form-control rounded" placeholder="Search By Truck ID">
+            <input type="text" class="form-control rounded" id='search' placeholder="Search By Truck ID">
           </div>
           <button type="submit" class="btn btn-connect rounded"><strong>Submit</strong></button>
         </form>
