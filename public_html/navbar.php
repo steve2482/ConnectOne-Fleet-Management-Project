@@ -1,3 +1,4 @@
+
 <nav class="navbar">
   <div class="container">
     <div class="container-fluid">
@@ -17,9 +18,9 @@
           <li><a href="./add-truck.php"><strong>Add</strong></a></li>
           <li><a href="#"><strong>Inspection</strong></a></li>
         </ul>
-        <form class="navbar-form navbar-right" role="search">
+        <form class="navbar-form navbar-right" role="search" method="POST" action="./truck.php">
           <div class="form-group">
-            <input type="text" class="form-control rounded" id='search' placeholder="Search By Truck ID">
+            <input type="text" class="form-control rounded" id='search' placeholder="Search By Truck ID" name="truckId">
           </div>
           <button type="submit" class="btn btn-connect rounded"><strong>Submit</strong></button>
         </form>

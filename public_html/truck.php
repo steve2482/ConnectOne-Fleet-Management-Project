@@ -2,18 +2,41 @@
   
   require_once(realpath(dirname(__FILE__) . "/../resources/database-config.php"));
 
-  // Get ID
-  $id = mysqli_real_escape_string($conn, $_GET['id']);
-  // Query database for specific truck
-  $query = 'SELECT * FROM fleet WHERE Id = '.$id;
+  $searchErrorMessage = '';
+  // If user searched for truck
+  if ($_POST) {
+    // Get ID
+    $id = mysqli_real_escape_string($conn, $_POST['truckId']);
+    // Query database for specific truck
+    $query = 'SELECT * FROM fleet WHERE Id = '.$id;
 
-  $result = mysqli_query($conn, $query);
+    $result = mysqli_query($conn, $query);
 
-  $truck = mysqli_fetch_assoc($result);
+    $truck = mysqli_fetch_assoc($result);
 
-  mysqli_free_result($result);
+    mysqli_free_result($result);
 
-  mysqli_close($conn);
+    mysqli_close($conn);
+
+    if (!$truck) {
+      $searchErrorMessage = 'There is no truck with the id of ' . $_POST['truckId'] . '. If you wish to add truck ' . $_POST['truckId'] . 'select add from the navigation bar or try or search again.';
+    }
+  }
+  // else user clicked truck in fleet list
+  else {
+    // Get ID
+    $id = mysqli_real_escape_string($conn, $_GET['id']);
+    // Query database for specific truck
+    $query = 'SELECT * FROM fleet WHERE Id = '.$id;
+
+    $result = mysqli_query($conn, $query);
+
+    $truck = mysqli_fetch_assoc($result);
+
+    mysqli_free_result($result);
+
+    mysqli_close($conn);
+    }
 ?>
 
 
@@ -21,7 +44,11 @@
     <?php include('./navbar.php'); ?>
     
     <div class="container">
-      <h1 style="text-align: center;"></h1>
+      <?php
+        if ($searchErrorMessage) {
+          echo '<p class="alert alert-danger" role="alert">' . $searchErrorMessage . '</p>';
+        }
+      ?>
       <div class="panel panel-connect rounded">
         <div class="panel-heading">
           <h1 class="panel-title"><strong>Truck <?php echo $truck['Id'] ?></strong><a href=<?php echo './edit-truck.php?id=' . $truck['Id'] ?> class="btn btn-primary pull-right">Edit</a></h1>
