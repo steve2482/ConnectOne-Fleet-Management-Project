@@ -16,8 +16,8 @@
           <ul class="nav navbar-nav">
             <li><a href="./index.php"><strong>Home</strong><span class="sr-only">(current)</span></a></li>
             <li><a href="./add-truck.php"><strong>Add</strong></a></li>
-            <li><a href="#"><strong>Inspection</strong></a></li>
-          </ul>
+<!--             <li><a href="#"><strong>Inspection</strong></a></li>
+ -->          </ul>
           <form class="navbar-form navbar-right" role="search" method="POST" action="./truck.php">
             <div class="form-group">
               <input type="text" class="form-control rounded" id='search' placeholder="Search By Truck ID" name="truckId">
