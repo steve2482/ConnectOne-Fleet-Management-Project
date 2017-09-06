@@ -1,10 +1,11 @@
 body {
-  // background-color: white;
+  background-image: url('../images/grey_wash_wall.png');
   color: black;
+  background-position: center;
 }
 
 .container {
-  background-color: #EFEFEF;
+  background-color: rgba(239, 239, 239, 0.2);
 }
 
 .header {

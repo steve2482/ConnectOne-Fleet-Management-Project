@@ -61,5 +61,5 @@
     </div>
 </div>
 
-<?php include('../resources/templates/footer.php'); ?>
+
 
