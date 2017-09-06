@@ -134,7 +134,7 @@
                       WHERE Id = " . $updateId;
             if (mysqli_query($conn, $query)) {
               $this->errors = [];
-              echo '<script type="text/javascript">window.location.pathname = decodeURIComponent("connectoneproject/public_html/index.php")</script>';
+              echo '<script type="text/javascript">window.location.pathname = decodeURIComponent("/public_html/index.php")</script>';
               
             } else {
               echo 'ERROR: ' . mysqli_error($conn);
@@ -163,7 +163,7 @@
                       WHERE Id = " . $updateId;;
             if (mysqli_query($conn, $query)) {
               $this->errors = [];              
-              echo '<script type="text/javascript">window.location.pathname = decodeURIComponent("connectoneproject/public_html/index.php")</script>';
+              echo '<script type="text/javascript">window.location.pathname = decodeURIComponent("/public_html/index.php")</script>';
 
             } else {
               echo 'ERROR: ' . mysqli_error($conn);
@@ -192,7 +192,7 @@
                       WHERE Id = " . $updateId;;
             if (mysqli_query($conn, $query)) {
               $this->errors = [];
-              echo '<script type="text/javascript">window.location.pathname = decodeURIComponent("connectoneproject/public_html/index.php")</script>';
+              echo '<script type="text/javascript">window.location.pathname = decodeURIComponent("/public_html/index.php")</script>';
             } else {
               echo 'ERROR: ' . mysqli_error($conn);
             }
@@ -214,7 +214,7 @@
             if (mysqli_query($conn, $query)) {
               array_push($this->successMessage, 'Truck ' . $truckId . ' updated successfully!');              
               $this->errors = [];
-              echo '<script type="text/javascript">window.location.pathname = decodeURIComponent("connectoneproject/public_html/index.php")</script>';
+              echo '<script type="text/javascript">window.location.pathname = decodeURIComponent("/public_html/index.php")</script>';
             } else {
               echo 'ERROR: ' . mysqli_error($conn);
             }

@@ -12,4 +12,3 @@
     echo 'Failed to connect DB' . mysqli_connect_errno();
   }
 ?>
-

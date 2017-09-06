@@ -1,5 +1,5 @@
 <?php
-  
+
   require_once(realpath(dirname(__FILE__) . "/../resources/database-config.php"));
 
   // Query database for all truck ID's
