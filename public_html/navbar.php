@@ -14,8 +14,8 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li><a href="./index.php"><strong>Home</strong><span class="sr-only">(current)</span></a></li>
-            <li><a href="./add-truck.php"><strong>Add</strong></a></li>
+            <li><a href="./index.php"><strong>HOME</strong><span class="sr-only">(current)</span></a></li>
+            <li><a href="./add-truck.php"><strong>ADD</strong></a></li>
 <!--             <li><a href="#"><strong>Inspection</strong></a></li>
  -->          </ul>
           <form class="navbar-form navbar-right" role="search" method="POST" action="./truck.php">

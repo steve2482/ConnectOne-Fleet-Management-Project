@@ -2,12 +2,14 @@
 .fleet-list {
   height: 900px;
   margin-top: 10px;
+  overflow: auto;
 }
 
 .list-group-item {
   color: white !important;
   background-color: #3E68B0 !important;
   border-radius: 4px;
+  transition: .75s;
 }
 
 .list-item {
@@ -39,6 +41,11 @@
 
 .edit {
   margin-right: 5px;
+  transition: .75s;
+}
+
+.delete {
+  transition: .75s;
 }
 
 .delete:hover, .edit:hover {

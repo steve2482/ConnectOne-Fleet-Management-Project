@@ -1,11 +1,22 @@
 .navbar {
   background-color: #EFEFEF;
   margin-bottom: 0;
+  border-width: 0px;
   border-radius: 0;
 }
 
 .navbar a {
   color: #3B69AC;
+  font-size: 20px;
+  text-shadow: -1px 0 #d1d1d1, 0 1px #d1d1d1, 1px 0 #d1d1d1, 0 -1px #d1d1d1;
+  transition: .75s;
+}
+
+.navbar a:hover {
+  color: #EFEFEF;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+
+  background-color: #3B69AC !important;
 }
 
 .nav-img {
