@@ -20,7 +20,7 @@
 
     // Method to display add form
     public function displayForm() {
-      return '<div class="container">
+      return '<div>
                 <form id="add-form" enctype="multipart/form-data" method="' . $this->method . '" action="' . $this->action . '">
                   <div class="form-group">
                     <label>Truck Id</label>
@@ -59,7 +59,7 @@
                     <input type="date" name="inspection" class="form-control rounded">
                   </div>
                   <br>
-                  <button type="submit" name="submit" class="btn btn-connect rounded">Submit</button>
+                  <button type="submit" name="submit" class="btn btn-connect rounded"><strong>Submit</strong></button>
                 </form>
               </div>';
     }
@@ -120,11 +120,12 @@
 
 <?php include('./navbar.php'); ?>
 
-<div class="container">
-  <h1 class='header'>Add Truck</h1>
-</div>  
-  
-  
+<div class="container rounded" id="add-container">
+  <div>
+    <h1 class='header'>Add Truck</h1>
+  </div>  
+    
+    
 
   <?php
     $addForm = new Form('post', $_SERVER["PHP_SELF"]);
@@ -132,14 +133,15 @@
     if (isset($_POST['submit'])) {
       $addForm->handleSubmission();
       foreach ($addForm->errors as $error) {
-        $errorHTML = '<div class="container"><p class="alert alert-danger">' . $error . '</p></div>';
+        $errorHTML = '<p class="alert alert-danger">' . $error . '</p>';
         echo $errorHTML;
       }
       foreach ($addForm->successMessage as $message) {
-      $successHTML = '<div class="container"><p class="alert alert-success">' . $message . '</p></div>';
+      $successHTML = '<p class="alert alert-success">' . $message . '</p>';
       echo $successHTML;
       } 
     }
   ?>
+</div>
 
 <?php include('../resources/templates/footer.php'); ?>

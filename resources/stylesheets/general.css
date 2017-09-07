@@ -4,10 +4,19 @@ body {
   background-position: center;
 }
 
+button {
+  transition: .75s;
+}
+
 .container {
   background-color: rgba(239, 239, 239, 0.2);
 }
 
 .header {
   text-align: center;
+}
+
+.alert {
+  width: 60%;
+  margin: 10px auto;
 }
