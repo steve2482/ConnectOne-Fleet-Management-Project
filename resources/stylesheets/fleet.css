@@ -1,4 +1,9 @@
 /*Use of important to overwrite bootstrap styles*/
+.fleet-list {
+  height: 900px;
+  margin-top: 10px;
+}
+
 .list-group-item {
   color: white !important;
   background-color: #3E68B0 !important;
@@ -7,8 +12,15 @@
 
 .list-item {
   margin-bottom: 5px;
-  height: 60px;
-  font-size: 25px;
+  height: 40px;
+  font-size: 20px;
+  padding-top: 7px;
+
+}
+
+.list-item form {
+  height: 40px;
+  line-height: .25;
 }
 
 .list-group-item:hover {
@@ -16,13 +28,19 @@
   color: #3E68B0 !important;
 }
 
-.delete {
-  color: red;
-  float: right;
-  cursor: pointer;
-  position: static;
+.truck-id {
+  width: 50%;
+  margin-right: 0 !important;
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+  line-height: 1;
+  padding-top: 3px
 }
 
-.delete:hover {
-  transform: scale(1.7);
+.edit {
+  margin-right: 5px;
+}
+
+.delete:hover, .edit:hover {
+  transform: scale(1.25);
 }
