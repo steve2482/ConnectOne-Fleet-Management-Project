@@ -43,7 +43,7 @@
     <?php include('../resources/templates/header.php'); ?>
     <?php include('./navbar.php'); ?>
     
-    <div class="container">
+    <div class="container rounded opac-container">
       <?php
         if ($searchErrorMessage) {
           echo '<p class="alert alert-danger" role="alert">' . $searchErrorMessage . '</p>';
@@ -51,7 +51,7 @@
       ?>
       <div class="panel panel-connect rounded">
         <div class="panel-heading">
-          <h1 class="panel-title"><strong>Truck <?php echo $truck['Id'] ?></strong><a href=<?php echo './edit-truck.php?id=' . $truck['Id'] ?> class="btn btn-primary pull-right">Edit</a></h1>
+          <h1 class="panel-title"><strong>Truck <?php echo $truck['Id'] ?></strong><a href=<?php echo './edit-truck.php?id=' . $truck['Id'] ?> class="btn btn-primary btn-sm pull-right glyphicon glyphicon-pencil edit"></a></h1>
         </div>
         <ul class="list-group">
           <li class="list-group-item info">Driver: <?php echo $truck['Driver'] ?></li>

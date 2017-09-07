@@ -35,7 +35,7 @@
 
     // Method to display add form
     public function displayForm() {
-      return '<div class="container">
+      return '<div>
                 <form id="add-form" enctype="multipart/form-data" method="' . $this->method . '" action="' . $this->action . '">
                   <div class="form-group">
                     <label>Truck Id</label>
@@ -242,11 +242,10 @@
 
 <?php include('./navbar.php'); ?>
 
-<div class="container">
-  <h1 class='header'>Add Truck</h1>
-</div>  
-  
-  
+<div class="container opac-container">
+  <div>
+    <h1 class='header'>Edit Truck</h1>
+  </div>
 
   <?php
     $editForm = new EditForm('post', $_SERVER["PHP_SELF"], $truck);
@@ -263,5 +262,6 @@
       } 
     }
   ?>
+</div>
 
 <?php include('../resources/templates/footer.php'); ?>

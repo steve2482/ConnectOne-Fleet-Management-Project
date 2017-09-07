@@ -1,12 +1,13 @@
 .panel {
   border-color: #3B69AC;
+  margin-top: 10px;
 }
 
 .panel-connect>.panel-heading {
   color: white;
   background-color: #3B69AC;
   border-color: #3B69AC;
-  height: 60px;
+  height: 52px;
 }
 
 .panel-title {

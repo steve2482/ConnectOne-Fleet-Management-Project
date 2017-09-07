@@ -120,7 +120,7 @@
 
 <?php include('./navbar.php'); ?>
 
-<div class="container rounded" id="add-container">
+<div class="container rounded opac-container">
   <div>
     <h1 class='header'>Add Truck</h1>
   </div>  
