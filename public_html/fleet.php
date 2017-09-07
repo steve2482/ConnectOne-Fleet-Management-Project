@@ -1,5 +1,4 @@
 <?php
-
   require_once(realpath(dirname(__FILE__) . "/../resources/database-config.php"));
 
   // Query database for all truck ID's
@@ -35,10 +34,13 @@
       <div class="list-group">
         <?php 
           for ($i = 0; $i < $half; $i++) {
-            echo '<a href="./truck.php?id=' . $trucks[$i]['Id'] . '" class="list-group-item list-item"><strong>Truck ' . $trucks[$i]['Id'] . '</strong>
+            echo '<a href="./truck.php?id=' . $trucks[$i]['Id'] . '" class="list-group-item list-item"><strong>Truck ' . $trucks[$i]['Id'] . '</strong>            
                 <form class="pull-right" method="POST" action="' . $_SERVER["PHP_SELF"] . '">
                   <input type="hidden" name="deleteId" value="' . $trucks[$i]['Id'] . '">
-                  <input type="submit" name="delete" value="Delete" class="btn btn-danger">
+                  <button type="submit" name="delete" class="btn btn-danger btn-xs glyphicon glyphicon-remove"></button>
+                </form>
+                <form class="pull-right" id="edit-btn" method="POST" action="' . $_SERVER["PHP_SELF"] . '">
+                  <button type="submit" name="edit" class="btn btn-primary btn-xs glyphicon glyphicon-pencil"></button>
                 </form>
               </a>';
           }
@@ -49,10 +51,13 @@
       <div class="list-group">
         <?php 
           for ($i = $half; $i < count($trucks); $i++) {
-            echo '<a href="./truck.php?id=' . $trucks[$i]['Id'] . '" class="list-group-item list-item"><strong>Truck ' . $trucks[$i]['Id'] . '</strong>
+            echo '<a href="./truck.php?id=' . $trucks[$i]['Id'] . '" class="list-group-item list-item"><strong>Truck ' . $trucks[$i]['Id'] . '</strong>            
                 <form class="pull-right" method="POST" action="' . $_SERVER["PHP_SELF"] . '">
                   <input type="hidden" name="deleteId" value="' . $trucks[$i]['Id'] . '">
-                  <input type="submit" name="delete" value="Delete" class="btn btn-danger">
+                  <button type="submit" name="delete" class="btn btn-danger btn-xs glyphicon glyphicon-remove"></button>
+                </form>
+                <form class="pull-right" id="edit-btn" method="POST" action="' . $_SERVER["PHP_SELF"] . '">
+                  <button type="submit" name="edit" class="btn btn-primary btn-xs glyphicon glyphicon-pencil"></button>
                 </form>
               </a>';
           }

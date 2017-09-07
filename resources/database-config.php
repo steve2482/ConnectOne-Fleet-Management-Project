@@ -1,14 +1,24 @@
 <?php
-  $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+  // If development server connect to development db, else connect to production db
+  if ($_SERVER['SERVER_NAME'] === 'localhost') {
+    $conn = mysqli_connect('localhost', 'root', 'Nascar2482##', 'connectone');
 
-  $server = $url["host"];
-  $username = $url["user"];
-  $password = $url["pass"];
-  $db = substr($url["path"], 1);
+    if(mysqli_connect_errno()) {
+      echo 'Failed to connect DB' . mysqli_connect_errno();
+    }
+  } else {
+    $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 
-  $conn = mysqli_connect($server, $username, $password, $db);
+    $server = $url["host"];
+    $username = $url["user"];
+    $password = $url["pass"];
+    $db = substr($url["path"], 1);
 
-  if(mysqli_connect_errno()) {
-    echo 'Failed to connect DB' . mysqli_connect_errno();
+    $conn = mysqli_connect($server, $username, $password, $db);
+
+    if(mysqli_connect_errno()) {
+      echo 'Failed to connect DB' . mysqli_connect_errno();
+    }
   }
 ?>
+
