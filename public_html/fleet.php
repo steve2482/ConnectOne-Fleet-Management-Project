@@ -21,6 +21,14 @@
 
   // Check if delete button was clicked
   if (isset($_POST['delete'])) {
+    // set path to files to delete
+    $targetPath = '../resources/uploads/';
+    $insurancePath = $targetPath . 'truck' . $_POST['deleteId'] . '-insurance';
+    $registrationPath = $targetPath . 'truck' . $_POST['deleteId'] . '-registration';
+    // if old files exist, delete old files
+    unlink($insurancePath);
+    unlink($registrationPath);
+    // delete truck from database
     $deleteId = mysqli_real_escape_string($conn, $_POST['deleteId']);
     echo $deleteId;
     $query = 'DELETE FROM fleet WHERE Id = ' . $deleteId;
@@ -40,7 +48,7 @@
         <?php 
           for ($i = 0; $i < $half; $i++) {
             echo '<a href="./truck.php?id=' . $trucks[$i]['Id'] . '" class="list-group-item list-item"><p class="pull-left truck-id"><strong>Truck ' . $trucks[$i]['Id'] . '</strong></p>            
-                <form class="pull-right" method="POST" action="' . $_SERVER["PHP_SELF"] . '">
+                <form class="pull-right" method="POST" action="' . $_SERVER["PHP_SELF"] . '" onsubmit="return confirm(\'Are you sure you want to delete truck ' .$trucks[$i]['Id'] . '?\')">
                   <input type="hidden" name="deleteId" value="' . $trucks[$i]['Id'] . '">
                   <button type="submit" name="delete" class="btn btn-danger btn-xs glyphicon glyphicon-remove delete"></button>
                 </form>
@@ -58,11 +66,12 @@
         <?php 
           for ($i = $half; $i < count($trucks); $i++) {
             echo '<a href="./truck.php?id=' . $trucks[$i]['Id'] . '" class="list-group-item list-item"><p class="pull-left truck-id"><strong>Truck ' . $trucks[$i]['Id'] . '</strong></p>            
-                <form class="pull-right" method="POST" action="' . $_SERVER["PHP_SELF"] . '">
+                <form class="pull-right" method="POST" action="' . $_SERVER["PHP_SELF"] . '" onsubmit="return confirm(\'Are you sure you want to delete truck ' .$trucks[$i]['Id'] . '?\')">
                   <input type="hidden" name="deleteId" value="' . $trucks[$i]['Id'] . '">
                   <button type="submit" name="delete" class="btn btn-danger btn-xs glyphicon glyphicon-remove delete"></button>
                 </form>
-                <form class="pull-right" id="edit-btn" method="POST" action="' . $_SERVER["PHP_SELF"] . '">
+                <form class="pull-right" method="POST" action="' . $_SERVER["PHP_SELF"] . '">
+                  <input type="hidden" name="editId" value="' . $trucks[$i]['Id'] . '">
                   <button type="submit" name="edit" class="btn btn-primary btn-xs glyphicon glyphicon-pencil edit"></button>
                 </form>
               </a>';
@@ -70,6 +79,7 @@
         ?>
       </div>
     </div>
+  </div>
 </div>
 
 

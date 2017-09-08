@@ -104,7 +104,7 @@
           $oilChange = $_POST['oilChange'];
           $inspection = $_POST['inspection'];
 
-          // save files to server
+          // set path of ins/ref files and name 
           $targetPath = '../resources/uploads/';
           $insurancePath = $targetPath . 'truck' . $truckId . '-insurance';
           $registrationPath = $targetPath . 'truck' . $truckId . '-registration';
