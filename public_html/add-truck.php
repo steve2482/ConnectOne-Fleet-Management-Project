@@ -32,7 +32,11 @@
                   </div>
                   <div class="form-group">
                     <label>Warehouse</label>
-                    <input type="text" name="warehouse" class="form-control rounded">
+                    <select name="warehouse" class="form-control rounded">
+                      <option value="" disabled selected>Select Warehouse</option>
+                      <option value="Oxford, CT">Oxford, CT</option>
+                      <option value="Warehouse 2">Warehouse 2</option>
+                    </select>
                   </div>
                   <div class="form-group">
                     <label>Insurance Card</label>
