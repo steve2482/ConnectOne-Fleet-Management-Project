@@ -84,26 +84,76 @@
           $oilChange = $_POST['oilChange'];
           $inspection = $_POST['inspection'];
 
-          // save files to server
+          // set path of ins/ref files and name 
           $targetPath = '../resources/uploads/';
           $insurancePath = $targetPath . 'truck' . $truckId . '-insurance';
           $registrationPath = $targetPath . 'truck' . $truckId . '-registration';
 
-          if ($_FILES['insurance']['type'] == 'application/pdf') {
+          // If both files exist and are of correct type, continue upload
+          if ($_FILES['insurance'] && $_FILES['insurance']['type'] == 'application/pdf' && $_FILES['registration'] && $_FILES['registration']['type'] == 'application/pdf') {
+
+            // save new files
             move_uploaded_file($_FILES['insurance']['tmp_name'], $insurancePath);
+            move_uploaded_file($_FILES['registration']['tmp_name'], $registrationPath);
+
+            // save info to DB
+            $query = "INSERT INTO fleet (Id, Driver, Warehouse, Insurance, Registration, GPS, EasyPass, OilChange, Inspection) VALUES ('$truckId', '$driver', '$warehouse', '$insurancePath', '$registrationPath', '$gps', '$easyPass', '$oilChange', '$inspection')";
+            if (mysqli_query($conn, $query)) {
+              array_push($this->successMessage, 'Truck ' . $truckId . 'added successfully!');
+              $this->errors = [];
+            } else {
+              echo 'ERROR: ' . mysqli_error($conn);
+            }           
+          } 
+
+          // If only insurance file exists
+          elseif ($_FILES['insurance'] && $_FILES['insurance']['type'] == 'application/pdf') {
+
+            // save new insurance file
+            move_uploaded_file($_FILES['insurance']['tmp_name'], $insurancePath);
+
+            // save info to DB
+            $query = "INSERT INTO fleet (Id, Driver, Warehouse, Insurance, GPS, EasyPass, OilChange, Inspection) VALUES ('$truckId', '$driver', '$warehouse', '$insurancePath', '$gps', '$easyPass', '$oilChange', '$inspection')";
+            if (mysqli_query($conn, $query)) {
+              array_push($this->successMessage, 'Truck ' . $truckId . 'added successfully!');
+              $this->errors = [];
+            } else {
+              echo 'ERROR: ' . mysqli_error($conn);
+            }
           }
 
-          if ($_FILES['registration']['type'] == 'application/pdf') {
-            move_uploaded_file($_FILES['registration']['tmp_name'], $registrationPath);      
+          // If only registration file exists
+          elseif ($_FILES['registration'] && $_FILES['registration']['type'] == 'application/pdf') {
+
+            // save new registration file
+            move_uploaded_file($_FILES['registration']['tmp_name'], $registrationPath);
+
+            // save info to DB
+            $query = "INSERT INTO fleet (Id, Driver, Warehouse, Registration, GPS, EasyPass, OilChange, Inspection) VALUES ('$truckId', '$driver', '$warehouse', '$registrationPath', '$gps', '$easyPass', '$oilChange', '$inspection')";
+            if (mysqli_query($conn, $query)) {
+              array_push($this->successMessage, 'Truck ' . $truckId . 'added successfully!');
+              $this->errors = [];
+            } else {
+              echo 'ERROR: ' . mysqli_error($conn);
+            }
           }
 
-          // save info to DB
-          $query = "INSERT INTO fleet (Id, Driver, Warehouse, Insurance, Registration, GPS, EasyPass, OilChange, Inspection) VALUES ('$truckId', '$driver', '$warehouse', '$insurancePath', '$registrationPath', '$gps', '$easyPass', '$oilChange', '$inspection')";
-          if (mysqli_query($conn, $query)) {
-            array_push($this->successMessage, 'Truck ' . $truckId . 'added successfully!');
-            $this->errors = [];
-          } else {
-            echo 'ERROR: ' . mysqli_error($conn);
+          // If no new files
+          elseif (!$_FILES['insurance']['name'] && !$_FILES['registration']['name']) {
+
+            // save info to DB
+            $query = "INSERT INTO fleet (Id, Driver, Warehouse, GPS, EasyPass, OilChange, Inspection) VALUES ('$truckId', '$driver', '$warehouse', '$gps', '$easyPass', '$oilChange', '$inspection')";
+            if (mysqli_query($conn, $query)) {
+              array_push($this->successMessage, 'Truck ' . $truckId . 'added successfully!');
+              $this->errors = [];
+            } else {
+              echo 'ERROR: ' . mysqli_error($conn);
+            }
+          }
+
+          // Else something isn't right
+          else {
+            array_push($this->errors, 'Something went wrong while trying to add truck, please try again.');
           }
         }
       }
