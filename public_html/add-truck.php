@@ -91,7 +91,10 @@
 
           if ($_FILES['insurance']['type'] == 'application/pdf') {
             move_uploaded_file($_FILES['insurance']['tmp_name'], $insurancePath);
-            move_uploaded_file($_FILES['registration']['tmp_name'], $registrationPath);            
+          }
+
+          if ($_FILES['registration']['type'] == 'application/pdf') {
+            move_uploaded_file($_FILES['registration']['tmp_name'], $registrationPath);      
           }
 
           // save info to DB
